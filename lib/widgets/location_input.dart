@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:favorite_places/models/place.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
@@ -15,7 +16,7 @@ class LocationInput extends StatefulWidget {
 }
 
 class _LocationInputState extends State<LocationInput> {
-  Location? _pickedLocation;
+  PlaceLocation? _pickedLocation;
   var _isGettingLocation = false;
 
   void _getCurrentLocation() async {
@@ -50,6 +51,10 @@ class _LocationInputState extends State<LocationInput> {
     final lat = locationData.latitude;
     final lng = locationData.longitude;
 
+    if (lat == null || lng == null) {
+      return;
+    }
+
     final apiKey = dotenv.get('GOOGLE_API_KEY', fallback: 'YOUR_API_KEY');
 
     final url = Uri.parse(
@@ -62,6 +67,11 @@ class _LocationInputState extends State<LocationInput> {
     final address = resData['results'][0]['formatted_address'];
 
     setState(() {
+      _pickedLocation = PlaceLocation(
+        latitude: lat,
+        longitude: lng,
+        address: address,
+      );
       _isGettingLocation = false;
     });
   }
