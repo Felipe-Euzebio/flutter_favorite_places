@@ -1,3 +1,5 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'package:favorite_places/screens/places.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +30,9 @@ final theme = ThemeData().copyWith(
   ),
 );
 
-void main() {
+Future main() async {
+  await dotenv.load();
+
   runApp(
     const ProviderScope(
       child: MyApp(),
