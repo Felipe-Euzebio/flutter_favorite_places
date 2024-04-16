@@ -15,7 +15,7 @@ class PlaceDetailsScreen extends StatelessWidget {
     final lat = place.location.latitude;
     final lng = place.location.longitude;
     
-    final apiKey = dotenv.get('GOOGLE_API_KEY', fallback: 'YOUR_API_KEY');
+    final apiKey = dotenv.get('GOOGLE_MAPS_API_KEY', fallback: 'YOUR_API_KEY');
 
     return 'https://maps.googleapis.com/maps/api/staticmap?'
       'center=$lat,$lng'
