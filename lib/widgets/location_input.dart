@@ -32,7 +32,7 @@ class _LocationInputState extends State<LocationInput> {
     final lat = _pickedLocation!.latitude;
     final lng = _pickedLocation!.longitude;
     
-    final apiKey = dotenv.get('GOOGLE_MAPS_API_KEY', fallback: 'YOUR_API_KEY');
+    final apiKey = dotenv.get('MAPS_API_KEY', fallback: 'YOUR_API_KEY');
 
     return 'https://maps.googleapis.com/maps/api/staticmap?'
       'center=$lat,$lng'
@@ -79,7 +79,7 @@ class _LocationInputState extends State<LocationInput> {
       return;
     }
 
-    final apiKey = dotenv.get('GOOGLE_MAPS_API_KEY', fallback: 'YOUR_API_KEY');
+    final apiKey = dotenv.get('MAPS_API_KEY', fallback: 'YOUR_API_KEY');
 
     final url = Uri.parse(
       'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$apiKey'
